@@ -30,7 +30,7 @@ type SectionProps = PropsWithChildren<{
 function Section({children, title}: SectionProps): JSX.Element {
   return (
     <View className="mt-8 px-2">
-      <Text>{title}</Text>
+      <Text className="text-red-600 font-bold">Hello World</Text>
       <Text>{children}</Text>
     </View>
   );
@@ -38,7 +38,7 @@ function Section({children, title}: SectionProps): JSX.Element {
 
 function App(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
-  const backgroundStyle = 'bg-neutral-300 dark:bg-slate-900';
+  const backgroundStyle = 'bg-neutral-300 dark:bg-red-100';
 
   return (
     <SafeAreaView className={backgroundStyle}>
@@ -50,21 +50,11 @@ function App(): JSX.Element {
         contentInsetAdjustmentBehavior="automatic"
         className={backgroundStyle}>
         <Header />
-        <View className="bg-white dark:bg-black">
+        <View className="bg-black dark:bg-black">
           <Section title="Step One">
-            Edit <Text className="font-bold">App.tsx</Text> to change this
-            screen and then come back to see your edits.
+            Edit <Text className="font-lights text-red-200 pb-10">App.tsx</Text>{' '}
+            to change this screen and then come back to see your fucking ideas.
           </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
         </View>
       </ScrollView>
     </SafeAreaView>
