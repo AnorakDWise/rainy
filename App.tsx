@@ -5,7 +5,7 @@
  * @format
  */
 
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import Svg, {LinearGradient, Stop, Path} from 'react-native-svg';
 import type {PropsWithChildren} from 'react';
 import {
@@ -21,7 +21,7 @@ type SectionProps = PropsWithChildren<{
   title: string;
 }>;
 
-const Cloudy = props => (
+const Cloudy = (props: any) => (
   <Svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" {...props}>
     <LinearGradient
       id="a"
@@ -68,7 +68,19 @@ const Cloudy = props => (
 
 function Location(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
-
+  const degree = 15;
+  const [temperatureLevel, setTemperatureLevel] = useState('');
+  useEffect(() => {
+    if (degree < 19) {
+      setTemperatureLevel('bg-blue-600 rounded-xl');
+    } else if (19 <= degree && degree < 27) {
+      setTemperatureLevel('bg-green-600 rounded-xl');
+    } else if (27 <= degree && degree < 40) {
+      setTemperatureLevel('bg-yellow-600 rounded-xl');
+    } else if (40 <= degree) {
+      setTemperatureLevel('bg-red-600 rounded-xl');
+    }
+  }, []);
   return (
     <View className="flex-col justify-center items-center">
       <Text
@@ -76,9 +88,9 @@ function Location(): JSX.Element {
         style={isDarkMode ? {color: '#e5e5e5'} : {color: '#262626'}}>
         Cannes
       </Text>
-      <View className="bg-blue-600 rounded-xl">
+      <View className={temperatureLevel}>
         <Text className="text-[5vw] text-neutral-200 font-medium px-[2vw] py-[1vw] overflow-hidden drop-temperature rounded-temperature">
-          15℃
+          {degree}℃
         </Text>
       </View>
     </View>
